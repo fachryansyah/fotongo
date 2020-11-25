@@ -23,5 +23,5 @@ $ go run main.go
 ```
 
 ### See more
-star & watch for get the latest update
-https://gofiber.io/
+star & watch for get the latest update <br />
+read more: https://gofiber.io/
