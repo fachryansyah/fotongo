@@ -19,7 +19,11 @@
 ```
 $ git clone
 ```
-2. Run in your local machine (Unix / Linux / Windows)
+2. Copy sample env
+```
+$ cp .env.example .env
+```
+3. Run in your local machine (Unix / Linux / Windows)
 ```
 $ make run-local
 ```
