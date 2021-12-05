@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+    app:
+        image: golang:1.17
+        command: sh -c "${COMMAND}"
+        ports:
+            - 3000:3000
+        working_dir: /app
+        volumes:
+            - ./:/app
+        environment:
+            APP_ENV: ${APP_ENV}
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_USER: fotongo
+            DB_PASS: 123456
+            DB_NAME: fotongo
+            DATABASE_URL: "postgres://fotongo:123456@db:5432/fotongo"
+            TEST_DB_HOST: db_test
+            TEST_DB_PORT: 5432
+            TEST_DB_USER: fotongo_test
+            TEST_DB_PASS: 123456_test
+            TEST_DB_NAME: fotongo_test
+            JWT_SECRET: ini-testing-password-secret
+            TEST_JWT_SECRET: ini-testing-password-secret
+        networks: 
+            - fotongo_net
+        depends_on:
+          - db
+    db:
+        image: postgres:latest
+        volumes:
+            - fotongo_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: fotongo
+            POSTGRES_PASSWORD: 123456
+            POSTGRES_DB: fotongo
+        networks: 
+            - fotongo_net
+        ports:
+            - 5437:5432
+    db_test:
+        image: postgres:latest
+        volumes:
+            - fotongo_data_test:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: fotongo_test
+            POSTGRES_PASSWORD: 123456_test
+            POSTGRES_DB: fotongo_test
+        networks: 
+            - fotongo_net
+    bytebase:
+        image: bytebase/bytebase:0.8.1
+        ports:
+            - "8008:8008"
+        volumes:
+            - bytebase_data:/var/opt/bytebase
+        command: |
+            --data /var/opt/bytebase --host http://localhost --port 8008
+volumes:
+    fotongo_data:
+    fotongo_data_test:
+    bytebase_data:
+networks:
+    fotongo_net:
+        driver: bridge

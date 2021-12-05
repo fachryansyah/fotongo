@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <testsuite name="Auth Suite" tests="1" failures="0" errors="0" time="1.02">
+      <testcase name="Auth Register Positive Case - User data" classname="Auth Suite" time="1.020246062"></testcase>
+  </testsuite>

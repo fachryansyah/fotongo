@@ -1,25 +1,33 @@
 package main
 
 import (
-	"fotongo/model"
-	"fotongo/router"
+	"fmt"
+	"fotongo/api"
+	"log"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
 )
 
+//go:generate go run github.com/prisma/prisma-client-go generate
+
+// @title Fotongo REST API
+// @version 1.0
+// @description An API Documentation for Payers app
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.email fiber@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @BasePath /api
 func main() {
-	app := fiber.New()
+	err := godotenv.Load(".env")
+	if err != nil {
+		fmt.Println("Error loading .env file")
+	}
 
-	model.InitDB()
-
-	app.Use(cors.New())
-
-	router.AuthRouter(app)
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("test api")
-	})
-
-	app.Listen(":1337")
+	api := api.InitializeServer()
+	log.Fatal(api.Listen(":3000"))
 }
