@@ -1,0 +1,96 @@
+basePath: /api
+definitions:
+  dtos.JSONSuccessResponses:
+    properties:
+      code:
+        type: integer
+      data:
+        type: string
+      status:
+        type: string
+    type: object
+  dtos.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dtos.RegisterRequest:
+    properties:
+      avatar_url:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      token_google:
+        type: string
+    required:
+    - avatar_url
+    - email
+    - name
+    - token_google
+    type: object
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: An API Documentation for Payers app
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fotongo REST API
+  version: "1.0"
+paths:
+  /v1/login:
+    post:
+      consumes:
+      - application/json
+      - multipart/form-data
+      - application/x-www-form-urlencoded
+      description: Login in a User
+      parameters:
+      - description: Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSuccessResponses'
+      tags:
+      - Authentication
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      - multipart/form-data
+      - application/x-www-form-urlencoded
+      description: Register a user
+      parameters:
+      - description: Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSuccessResponses'
+      tags:
+      - Authentication
+swagger: "2.0"

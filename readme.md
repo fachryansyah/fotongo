@@ -2,6 +2,12 @@
   Simple boilerplate for building Backend services like ExpressJS with GOFIBER ⚡️
 
 ## Features
+- [x] Clean Architecture
+- [x] Auto Generate Unit Testing Report
+- [x] Auto Generate Swagger Docs
+- [x] Auto Gen Depedency Injection with Google Wire
+- [x] Schema First Data Model with Prisma
+- [x] Versioning system for Database Migration with Bytebase
 - [x] Seperate route and handler
 - [x] Seperate Env config
 - [x] Database connection with best practice (conn pool)
@@ -13,14 +19,13 @@
 ```
 $ git clone
 ```
-2. Run in your local machine (Unix / Linux)
+2. Run in your local machine (Unix / Linux / Windows)
 ```
-$ make run
+$ make run-local
 ```
-Or in Windows
-```
-$ go run main.go
-```
+
+## Commands
+otw
 
 ### See more
 star & watch for get the latest update <br />
